@@ -4,6 +4,7 @@ from database import SessionLocal, engine
 import models
 from pydantic import BaseModel, Field
 from typing import Optional
+from auth import get_current_user,get_user_exception
 
 app=FastAPI(title="FastAPI: TodoApp")
 models.Base.metadata.create_all(bind=engine)
@@ -58,6 +59,12 @@ async def delete_todo(todo_id:int,db:Session=Depends(getDB)):
 @app.get("/")
 async def read_all(db:Session=Depends(getDB)):
     return db.query(models.Todos).all()
+
+@app.get("/todos/user")
+async def read_all_by_user(user:dict=Depends(get_current_user), db:Session=Depends(getDB)):
+    if user is None:
+        raise get_user_exception()
+    return db.query(models.Todos).filter(models.Todos.owner_id==user.get("id")).all()
 
 @app.get("/toto/{todo_id}")
 async def read_todo(todo_id:int,db:Session=Depends(getDB)):
