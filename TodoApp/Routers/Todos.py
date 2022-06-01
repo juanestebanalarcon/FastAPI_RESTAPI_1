@@ -10,7 +10,7 @@ from typing import Optional
 from auth import get_current_user,get_user_exception
 
 
-router=APIRouter()
+router=APIRouter(prefix="/todos",tags=["Todos"],responses={404:{"description":"Not found"}})
 models.Base.metadata.create_all(bind=engine)
 
 
