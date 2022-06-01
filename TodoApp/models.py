@@ -1,5 +1,3 @@
-from unittest.mock import DEFAULT
-from xmlrpc.client import boolean
 from sqlalchemy import Boolean, Column, Integer, String, ForeignKey
 from database import Base
 from sqlalchemy.orm import relationship
