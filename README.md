@@ -20,11 +20,16 @@ name = "pypi"
 fastapi = "*"
 uvicorn = "*"
 python-multipart = "*"
+sqlalchemy = "*"
+passlib = {extras = ["bcrypt"], version = "*"}
+python-jose = {extras = ["cryptography"], version = "*"}
+psycopg2-binary = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.10"
+
 
 ```
 - Commands:
